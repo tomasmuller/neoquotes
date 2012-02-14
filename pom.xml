@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.herokuapp.neoquotes</groupId>
+	<version>1.0</version>
+	<artifactId>neoquotes</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jruby.version>1.6.5</jruby.version>
+		<jruby.rack.version>1.1.3</jruby.rack.version>
+		<jetty.version>7.4.5.v20110725</jetty.version>
+		<servlet.api.version>2.5</servlet.api.version>
+		<spring.data.neo4j.version>2.0.0.RELEASE</spring.data.neo4j.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<aspectjrt.version>1.6.12</aspectjrt.version>
+		<junit.version>4.8.1</junit.version>
+		<log4j.version>1.2.16</log4j.version>
+		<java.source.version>1.6</java.source.version>
+		<java.target.version>1.6</java.target.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>neo4j-release-repository</id>
+			<name>Neo4j Maven 2 release repository</name>
+			<!--url>http://m2.neo4j.org/releases</url -->
+			<url>http://m2.neo4j.org/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jruby</groupId>
+			<artifactId>jruby-complete</artifactId>
+			<version>${jruby.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jruby.rack</groupId>
+			<artifactId>jruby-rack</artifactId>
+			<version>${jruby.rack.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jruby.plugins</groupId>
+			<artifactId>jruby-rake-plugin</artifactId>
+			<version>${jruby.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-neo4j-aspects</artifactId>
+			<version>${spring.data.neo4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-neo4j-rest</artifactId>
+			<version>${spring.data.neo4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+		
+    <dependency>
+      <groupId>log4j</groupId>
+		  <artifactId>log4j</artifactId>
+		  <version>${log4j.version}</version>
+    </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- advanced mapping uses AspectJ for build-time aspect weaving of entities -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectjrt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectjrt.version}</version>
+					</dependency>
+				</dependencies>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+					<outxml>true</outxml>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aspects</artifactId>
+						</aspectLibrary>
+						<aspectLibrary>
+							<groupId>org.springframework.data</groupId>
+							<artifactId>spring-data-neo4j-aspects</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<source>${java.source.version}</source>
+					<target>${java.target.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Appassembler configured to use JRuby as main class -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+						<configuration>
+							<assembleDirectory>target</assembleDirectory>
+							<extraJvmArguments>-Djruby.native.enabled=false -Djruby.cext.enabled=false -Djruby.compat.version=1.9 -Xmx256m -Xss2048k</extraJvmArguments>
+							<programs>
+								<program>
+									<mainClass>org.jruby.Main</mainClass>
+									<name>jruby</name>
+								</program>
+							</programs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Install and use bundler to process the Jemfile -->
+			<plugin>
+				<groupId>org.jruby.plugins</groupId>
+				<artifactId>jruby-rake-plugin</artifactId>
+				<version>${jruby.version}</version>
+				<executions>
+					<execution>
+						<id>install-bundler</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>jruby</goal>
+						</goals>
+						<configuration>
+							<args>-S gem install bundler --no-ri --no-rdoc --install-dir vendor/bundle</args>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bundle-install</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>jruby</goal>
+						</goals>
+						<configuration>
+							<args>script/bundle install --without development:test</args>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- jetty:run to start development server -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<scanTargets>
+						<scanTarget>app</scanTarget>
+					</scanTargets>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+</project>

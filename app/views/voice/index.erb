@@ -1,0 +1,33 @@
+<form id="lookupPart1" scope="dialog">
+  <block name="b1" cond="true">
+    <prompt bargein="true">
+      Welcome to Neo Quotes Application!
+    </prompt>
+  </block>
+  
+  <var name="stringSymbol" expr="''"/>
+
+  <block name="sayDesiredSymbol">
+    <prompt>Please, Spell the desired symbol. Remember to use the Yahoo Finance format.</prompt>
+  </block>
+      
+  <field name="symbolInput">
+    <%= erb :'/voice/grammars/symbols', :layout => false %>
+  </field>
+  
+  <filled namelist="symbolInput">
+    <if cond="symbolInput=='*'">
+      <goto nextitem="lookupSymbol"/>
+    <else/>
+      <prompt><value expr="symbolInput"/></prompt>
+      <assign name="stringSymbol" expr="stringSymbol + symbolInput"/>
+      <clear namelist="symbolInput"/>
+      <goto nextitem="symbolInput"/>
+    </if>
+  </filled>
+
+  <block name="lookupSymbol">
+    <prompt>Understood. Just wait a second!</prompt>
+    <submit method="post" namelist="stringSymbol" next="/voice/lookup.vxml"/>
+  </block>  
+</form>

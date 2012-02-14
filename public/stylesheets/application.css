@@ -1,0 +1,16 @@
+body {
+  padding-top: 40px;
+}
+
+.nav-tweet-li {
+  padding: 10px 0 0 9px;
+}
+
+.application-logo {
+  background: url('/img/neoquotes.png') no-repeat 5px 5px;
+}
+
+.logo-spacer {
+  width: 90px;
+  height: 15px;
+}

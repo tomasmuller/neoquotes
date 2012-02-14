@@ -1,0 +1,25 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+/* TEAM */
+  Developer: Tomás Augusto Müller
+  Site: http://tomasmuller.com.br
+  Twitter: @tomasmuller
+  Location: Brazil, Rio Grande do Sul
+
+/* THANKS */
+  Names (& URL): 
+  	Neo4j-Challenge (http://neo4j-challenge.herokuapp.com/),
+  	Neo4j.org (http://neo4j.org/),
+  	Heroku (http://www.heroku.com/),
+  	Spring Framework (http://www.springsource.org/),
+  	Spring Data (http://www.springsource.org/spring-data/neo4j),
+  	Michael Hunger, David Montag, Andreas Kollegger (http://static.springsource.org/spring-data/data-neo4j/docs/2.0.0.RELEASE/reference/html/)
+  	Jetty (http://www.eclipse.org/jetty/),
+  	JRuby (http://jruby.org/),
+  	Maven (http://maven.apache.org/),
+  	Sinatra (http://www.sinatrarb.com/),
+  	JQuery (http://jquery.com/),
+  	Arbor.js (http://arborjs.org/),
+  	Twitter Bootstrap (https://github.com/twitter/bootstrap)
+  	Yahoo Finance (http://finance.yahoo.com/)

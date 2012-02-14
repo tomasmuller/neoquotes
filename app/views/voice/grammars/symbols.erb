@@ -1,0 +1,84 @@
+<grammar type="text/gsl">
+  <![CDATA[
+  [
+    (dtmf-2)        { return ("a") }
+    (dtmf-2 dtmf-2)    { return ("b")  }
+    (dtmf-2 dtmf-2 dtmf-2) { return ("c") }
+    (dtmf-3)        { return ("d")}
+    (dtmf-3 dtmf-3)    { return ("e") }
+    (dtmf-3 dtmf-3 dtmf-3) { return ("f") }
+    (dtmf-4)        { return ("g")}
+    (dtmf-4 dtmf-4)    { return ("h") }
+    (dtmf-4 dtmf-4 dtmf-4) { return ("i") }
+    (dtmf-5)        { return ("j")}
+    (dtmf-5 dtmf-5)    { return ("k") }
+    (dtmf-5 dtmf-5 dtmf-5) { return ("l") }
+    (dtmf-6)        { return ("m")}
+    (dtmf-6 dtmf-6)    { return ("n") }
+    (dtmf-6 dtmf-6 dtmf-6) { return ("o") }
+    (dtmf-7)        { return ("p")}
+    (dtmf-7 dtmf-7)    { return ("q") }
+    (dtmf-7 dtmf-7 dtmf-7) { return ("r") }
+    (dtmf-7 dtmf-7 dtmf-7 dtmf-7) { return ("s") }
+    (dtmf-8)        { return ("t")}
+    (dtmf-8 dtmf-8)    { return ("u") }
+    (dtmf-8 dtmf-8 dtmf-8) { return ("v") }
+    (dtmf-9)        { return ("w")}
+    (dtmf-9 dtmf-9)    { return ("x") }
+    (dtmf-9 dtmf-9 dtmf-9) { return ("y") }
+    (dtmf-9 dtmf-9 dtmf-9 dtmf-9) { return ("z")}
+
+    (a)        { return ("a") }
+    (b)        { return ("b") }
+    (c)        { return ("c") }
+    (d)        { return ("d") }
+    (e)        { return ("e") }
+    (f)        { return ("f") }
+    (g)        { return ("g") }
+    (h)        { return ("h") }
+    (i)        { return ("i") }
+    (j)        { return ("j") }
+    (k)        { return ("k") }
+    (l)        { return ("l") }
+    (m)        { return ("m") }
+    (n)        { return ("n") }
+    (o)        { return ("o") }
+    (p)        { return ("p") }
+    (q)        { return ("q") }
+    (r)        { return ("r") }
+    (s)        { return ("s") }
+    (t)        { return ("t") }
+    (u)        { return ("u") }
+    (v)        { return ("v") }
+    (w)        { return ("w") }
+    (x)        { return ("x") }
+    (y)        { return ("y") }
+    (z)        { return ("z") }
+    (dot)      { return (".") }
+    (one)      { return ("1") }
+    (two)      { return ("2") }
+    (tree)     { return ("3") }
+    (three)    { return ("3") }
+    (four)     { return ("4") }
+    (five)     { return ("5") }
+    (faive)    { return ("5") }
+    (six)      { return ("6") }
+    (seven)    { return ("7") }
+    (eight)    { return ("8") }
+    (eigth)    { return ("8") }
+    (nine)     { return ("9") }
+    (naine)    { return ("9") }
+    (zero)     { return ("0") }
+
+    (okay)     { return ("*") }
+    (confirm)  { return ("*") }
+    (enter)    { return ("*") }
+    (find)     { return ("*") }
+    (search)   { return ("*") }
+    (look)     { return ("*") }
+    (lookup)   { return ("*") }
+    (do)       { return ("*") }
+    (go)       { return ("*") }
+  ]
+  ]]>
+</grammar>

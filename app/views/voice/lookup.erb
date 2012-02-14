@@ -1,0 +1,33 @@
+<form id="lookup" scope="dialog">
+
+  <block name="results">
+    <prompt bargein="false"> 
+      <% if @message != "SYMBOL_NOT_FOUND" %>
+        Quote for company <break strength="weak"/> <%= @results[:company_name] %> <break strength="medium"/>
+        listed in <%= @results[:stock_name] %> <break strength="medium"/>
+        with symbol <%= @results[:symbol] %> <break strength="medium"/>
+        is <say-as interpret-as="vxml:number"><%= @results[:price] %></say-as> <break strength="medium"/>
+      <% else %>
+        I cannot locate the requested symbol. Did you spell correctly? <break strength="medium"/>
+      <% end %>
+    </prompt>
+  </block>
+  
+  <field name="anotherLookupInput">
+    <%= erb :'/voice/grammars/yesno', :layout => false %>
+    <prompt>Do you want do another symbol lookup?</prompt>    
+  </field>
+
+  <filled namelist="anotherLookupInput">
+    <if cond="anotherLookupInput=='yes'">
+      <goto next="/voice/index.vxml"/>
+    <else/>
+      <prompt>
+        Thank you for using Neo Quotes. <break strength="weak"/>
+        Please vote for this application in Gensen repository. <break strength="weak"/>
+        See ya!
+      </prompt>
+    </if>
+  </filled>
+  
+</form>

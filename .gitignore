@@ -1,0 +1,11 @@
+target
+.bundle
+.DS_Store
+tmp
+log/*
+*.log
+.bundle
+vendor/bundle
+neoquotes.sublime-project
+.shell_history
+neoquotes.sublime-workspace

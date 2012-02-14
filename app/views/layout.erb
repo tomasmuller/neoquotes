@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="<%= settings.locale %>">
+<head>
+  <meta charset="UTF-8">
+  <title>NeoQuotes application, by Tomás Augusto Müller - Neo4j Challenge - Seed the cloud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Application developed by Tomás Augusto Müller for the Neo4j Challenge">
+  <meta name="author" content="Tomás Augusto Müller">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/application.css" rel="stylesheet">
+  <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+  <meta http-equiv="x-dns-prefetch-control" content="off">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+</head>
+<body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container application-logo">
+        <a href="/"><img src="/img/spacer.png" class="brand logo-spacer" alt="neoquotes"/></a>
+        <div class="nav-collapse">
+          <form id="symbol_lookup_form" action="" class="navbar-search pull-left">
+            <span class="add-on"><i class="icon-search icon-white"></i></span>
+            <input id="symbol" type="text" placeholder="Search symbol" class="search-query span2"/>
+          </form>
+          <ul class="nav">
+            <li><a data-toggle="modal" href="#applicationCallModal"><i class="icon-volume-up icon-white"></i> or make a call!</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a data-toggle="modal" href="#aboutAndVoteModal"><i class="icon-question-sign icon-white"></i> About</a></li>
+            <li><a data-toggle="modal" href="#aboutAndVoteModal"><i class="icon-exclamation-sign icon-white"></i> Vote!</a></li>
+            <li class="nav-tweet-li"><%= erb :'shared/tweet', :layout => false %></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div>
+  
+  <!-- Symbol not found modal dialog -->
+  <div class="modal hide fade" id="alertSymbolLookupModal">
+    <div class="modal-header">
+	    <a data-dismiss="modal" class="close">×</a>
+	    <h3>Symbol not found</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>Please, inform a valid symbol using <a href="http://finance.yahoo.com/" target="_blank">Yahoo Finance format</a>.</p>
+    </div>
+    <div class="modal-footer">
+      <a data-dismiss="modal" class="btn" href="#">Close</a>
+    </div>
+  </div>
+
+  <!-- Symbol info modal dialog -->
+  <div class="modal hide" id="symbolInfoModal">
+    <div class="modal-header">
+      <a data-dismiss="modal" class="close">×</a>
+      <h3 id="symbolInfoTitle"></h3>
+    </div>
+    <div class="modal-body">
+      <p>Price of <span id="symbolName"></span>: <span id="symbolPrice"></span></p>
+    </div>
+    <div class="modal-footer">
+      <a data-dismiss="modal" class="btn" href="#">Close</a>
+    </div>
+  </div>
+
+  <!-- About and Vote modal dialog -->
+  <div class="modal hide fade" id="aboutAndVoteModal">
+    <div class="modal-header">
+      <a data-dismiss="modal" class="close">×</a>
+      <h3>About NeoQuotes</h3>
+    </div>
+    <div class="modal-body">
+      <p>Hi! My name is Tomás Augusto Müller (<a href="http://tomasmuller.com.br/" target="_blank">site</a> / <a href="https://twitter.com/tomasmuller" target="_blank">twitter</a>),
+        and this is my entry to <a href="http://neo4j-challenge.herokuapp.com/" target="_blank">Neo4j Challenge</a>.</p>
+      <p>This application is open source and all the code is hosted at my account in github.</p>
+      <p>Please, consider to give your vote for this application in <a href="http://gensen.herokuapp.com/" target="_blank">Gensen Repository</a>.</p>
+      <p>and don't forget to <%= erb :'shared/tweet', :layout => false %></p>
+      <br/>
+      <p>For more information, read <a href="http://tomasmuller.com.br/2012/02/10/talking-with-neo4j-graphs/" target="_blank">my blog post</a> about the development of this application.</p>
+      <p>Thank you for your support!</p>
+      <p>Kind regards,<br/>Tomás Augusto Müller</p>
+    </div>
+    <div class="modal-footer">
+      <a data-dismiss="modal" class="btn" href="#">Close</a>
+    </div>
+  </div>
+
+  <!-- Loading modal dialog -->
+  <div class="modal hide fade" id="loadingModal">
+    <div class="modal-header">
+      <h3>Loading...</h3>
+    </div>
+    <div class="modal-body">
+      <p>Wait just a second...</p>
+    </div>
+  </div>
+
+  <!-- Application available numbers -->
+  <div class="modal hide fade" id="applicationCallModal">
+    <div class="modal-header">
+      <a data-dismiss="modal" class="close">×</a>
+      <h3>Call to NeoQuotes!</h3>
+    </div>
+    <div class="modal-body">
+      <p>You can interact with NeoQuotes, calling to one of the numbers bellow.</p>
+      <p>VoiceXML browser provided by <a href="http://evolution.voxeo.com/" target="_blank">Voxeo Corporation VoiceCenter network</a>.</p>
+      <p><strong>Application contacts:</strong></p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>USA Domestic (Voice + SMS)</td>
+            <td>(646) 475-3548</td>
+          </tr>
+          <tr>
+            <td>USA Toll Free PIN Access (Voice Only)</td>
+            <td>(800) 289-5570 then PIN: 9996189207</td>
+          </tr>
+          <tr>
+            <td>USA Domestic PIN Access (Voice Only)</td>
+            <td>(407) 386-2174 then PIN: 9996189207</td>
+          </tr>
+          <tr>
+            <td><strong>Skype VoIP</strong> <span class="label label-info">recommended!</span></td>
+            <td>+990009369996189207</td>
+          </tr>
+          <tr>
+            <td>SIP VoIP</td>
+            <td>sip:9996189207@sip.voxeo.net</td>
+          </tr>
+          <tr>
+            <td>Phono Number</td>
+            <td>app:9996189207</td>
+          </tr>
+          <tr>
+            <td>iNum Number (Voice Only)</td>
+            <td>+883510001852413</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a data-dismiss="modal" class="btn" href="#">Close</a>
+    </div>
+  </div>
+
+  <!-- Application container -->
+  <div class="neoquotes-graph">
+    <%= yield %>
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/javascripts/jquery-1.7.min.js"><\/script>')</script>
+
+  <script src="/javascripts/arborjs/arbor.js"></script>
+  <script src="/javascripts/arborjs/arbor-tween.js"></script>
+  <script src="/javascripts/arborjs/arbor-graphics.js"></script>
+
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script src="/javascripts/application.js"></script>
+      
+  <!--[if lt IE 7 ]>
+	  <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	  <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+  <![endif]-->
+  
+</body>
+</html>

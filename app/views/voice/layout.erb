@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xmlns="http://www.w3.org/2001/vxml">
+<!-- use the three lines below to receive the log errors of Voxeo service at the specifyed e-mail address. -->
+<meta name="author" content="Tomas Augusto Muller"/>
+<meta name="copyright" content="Tomas Augusto Muller"/>
+<meta name="maintainer" content="tomas.am@gmail.com"/>
+<!-- override 'noinput' and 'nomatch' for all dialogs -->
+<noinput>Sorry, i dont understand you.<reprompt/></noinput>
+<nomatch>i dont understand you. Speak again please.<reprompt/></nomatch>
+<!--
+adjust some of voice browser properties
+http://www.voicexmlguide.com/w3cprops.htm?search=property#anchor
+-->
+<property name="timeout" value="60s"/>
+<property name="fetchtimeout" value="60s"/>
+<property name="confidencelevel" value=".45"/>
+<property name="sensitivity" value="0.35"/>
+<property name="universals" value="all"/>
+
+<%= yield %>
+  
+</vxml>
