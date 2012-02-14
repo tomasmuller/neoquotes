@@ -1,21 +1,10 @@
 Introduction
 ------------
 This is a Heroku-ready Stock Exchange symbol lookup demo application using:
- * Neo4j
- * VoiceXML
- * JRuby
- * Sinatra
- * Spring Data
- * Spring Framework
- * Maven
- * Java
- * Jetty
- * Twitter Bootstrap
- * jQuery
- * Arbor.js
- * and data provided by [Yahoo Finance](http://finance.yahoo.com/).
+Neo4j, VoiceXML, JRuby, Sinatra, Spring Data, Spring Framework, Maven, Java,
+Jetty, Twitter Bootstrap, jQuery, Arbor.js, and data provided by [Yahoo Finance](http://finance.yahoo.com/).
 
-If you want more information about this application, [click here](http://tomasmuller.com.br/2012/02/12/talking-with-neo4j-graphs/).
+If you want more details about the development of this application, [click here](http://tomasmuller.com.br/2012/02/12/talking-with-neo4j-graphs/).
 
 
 Getting Started Locally
@@ -24,9 +13,9 @@ Getting Started Locally
  * rvm use jruby-1.6.5
  * Download and install Maven 3.0.3
  * Download and install Neo4J 1.6
-   * export NEO4J_REST_URL=http://localhost:7474/db/data
-   * export NEO4J_LOGIN=""
-   * export NEO4J_PASSWORD=""
+   * `export NEO4J_REST_URL=http://localhost:7474/db/data`
+   * `export NEO4J_LOGIN=""`
+   * `export NEO4J_PASSWORD=""`
    * Start Neo4j local server
  * git clone https://github.com/tomasmuller/neoquotes
  * cd neoquotes
@@ -34,8 +23,9 @@ Getting Started Locally
  * mvn jetty:run
  * open http://localhost:8080
 
-Obs: if you experience OutOfMemory errors while developing using `mvn jetty:run`, try increasing Maven PermSize and MaxPermSize:
-    
+Obs: if you experience OutOfMemory errors while developing using `mvn jetty:run`,
+try increasing Maven PermSize and MaxPermSize:
+
     export MAVEN_OPTS="-XX:PermSize=256M -XX:MaxPermSize=512M"
 
 Pushing to Heroku
@@ -68,9 +58,9 @@ So to add Ruby dependencies, edit your `Jemfile`, then run
 bundler commands.
 
 To run your rake tasks, unit tests for example, simply run:
-    
+
     jruby -S script/bundle exec rake test
-    
+
 To add Java dependencies, modify the `pom.xml` file and re-run `mvn install`.
 
 Run junit tests is a matter of running `mvn test`.
