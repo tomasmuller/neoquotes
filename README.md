@@ -17,7 +17,7 @@ Getting Started Locally
    * `export NEO4J_LOGIN=""`
    * `export NEO4J_PASSWORD=""`
    * Start Neo4j local server
- * git clone https://github.com/tomasmuller/neoquotes
+ * git clone https://github.com/tomasmuller/neoquotes.git
  * cd neoquotes
  * mvn install (or mvn package)
  * mvn jetty:run
