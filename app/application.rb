@@ -10,7 +10,7 @@ end
 # Symbol lookup through GUI
 #
 post '/:symbol' do
-  # Get informations about this symbol from Yahoo Finance 
+  # Get informations about this symbol from Yahoo Finance
   #
   results = Yql.lookup_symbol params[:symbol]
   yqlResult = com.herokuapp.neoquotes.models.YqlResult.new
@@ -18,13 +18,13 @@ post '/:symbol' do
   yqlResult.stockName = results[:stock_name].to_java
   yqlResult.companyName = results[:company_name].to_java
   yqlResult.price = results[:price].to_java
-  
+
   # Create or Update symbol information
   #
   symbol = com.herokuapp.neoquotes.models.Symbol.new
   message = symbol.search(yqlResult)
   logger.info "Returning: #{message}"
-  message 
+  message
 end
 
 # Symbol lookup through VOICE
@@ -35,8 +35,8 @@ end
 
 post '/voice/lookup.vxml' do
   logger.info "Searching for symbol: #{params[:stringSymbol]}"
-  
-  # Get informations about this symbol from Yahoo Finance 
+
+  # Get informations about this symbol from Yahoo Finance
   #
   @results = Yql.lookup_symbol params[:stringSymbol]
   yqlResult = com.herokuapp.neoquotes.models.YqlResult.new
@@ -53,13 +53,6 @@ post '/voice/lookup.vxml' do
   # Send user to vxml with lookup results.
   #
   erb :'/voice/lookup', :layout => :'voice/layout'
-end
-
-# Return Neo4j data in Arbor.js JSON format
-#
-get '/graph.json' do
-  graph = com.herokuapp.neoquotes.models.Graph.new
-  graph.toJson
 end
 
 error 404 do
