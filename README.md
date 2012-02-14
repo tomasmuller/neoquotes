@@ -28,6 +28,7 @@ try increasing Maven PermSize and MaxPermSize:
 
     export MAVEN_OPTS="-XX:PermSize=256M -XX:MaxPermSize=512M"
 
+
 Pushing to Heroku
 ------------------
  * heroku create --stack cedar
@@ -39,18 +40,17 @@ Pushing to Heroku
 
 How does it work?
 -----------------
-
 Heroku detects the pom.xml file and selects Java as the application's
-langauge. A `mvn install` is run as part of the Heroku slug
+language. A `mvn install` is run as part of the Heroku slug
 compliation. Two tasks in `pom.xml` (install-bundler and bundle-install)
 handle setting up the Ruby side of the application.
 
-The `Procfile` uses script/jruby to setup the jruby environment and start
+The `Procfile` uses target/bin/jruby to setup the jruby environment and start
 Jetty up.
+
 
 Local development
 -----------------
-
 Basically use `script/bundle` in place of the normal `bundle` command.
 
 So to add Ruby dependencies, edit your `Jemfile`, then run
@@ -61,15 +61,15 @@ To run your rake tasks, unit tests for example, simply run:
 
     jruby -S script/bundle exec rake test
 
-To add Java dependencies, modify the `pom.xml` file and re-run `mvn install`.
+To add Java dependencies, modify the `pom.xml` file and re-run `mvn install` or `mvn package`.
 
-Run junit tests is a matter of running `mvn test`.
+To run Junit tests is a matter of running `mvn test`.
 
 **Don't forget to start neo4j local server, and export required environment variables before running any mvn command.**
 Otherwise you'll get connection refused errors.
 
+
 Thanks
 -------
-
 Neo4j for the amazing piece of software and for sponsoring the [challenge](http://neo4j-challenge.herokuapp.com/).
 Of course, to all others great open-source technologies used in this application.
