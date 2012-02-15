@@ -71,7 +71,7 @@ public class Company implements Arborable {
     
     @Override
     public String nodeToArborJsJson() {
-		return "\"" + getName() + "\"" + Graph.COMPANY_NODES_CONFIG;
+		return "\"" + getName() + "\"" + Arborable.COMPANY_NODES_CONFIG;
 	}
 
     @Override
@@ -81,7 +81,7 @@ public class Company implements Arborable {
     	
     	if (getSymbols() != null && !getSymbols().isEmpty()) {
         	for (Symbol s : getSymbols()) {
-        		edges.append("\"" + s.getSymbol() + "\"" + Graph.COMPANY_EDGES_CONFIG).append(",");
+        		edges.append("\"" + s.getSymbol() + "\"" + Arborable.COMPANY_EDGES_CONFIG).append(",");
         	}
         	edges = edges.deleteCharAt(edges.length() - 1);
     	}

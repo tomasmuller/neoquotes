@@ -99,7 +99,7 @@ public class Symbol implements Arborable {
     
     @Override
     public String nodeToArborJsJson() {
-		return "\"" + getSymbol() + "\"" + Graph.SYMBOL_NODES_CONFIG.replace(Wildcard.PRICE, getPrice());
+		return "\"" + getSymbol() + "\"" + Arborable.SYMBOL_NODES_CONFIG;
 	}
 
     @Override

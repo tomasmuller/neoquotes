@@ -68,7 +68,7 @@ public class Stock implements Arborable {
 	
     @Override
     public String nodeToArborJsJson() {
-		return "\"" + getName() + "\"" + Graph.STOCK_NODES_CONFIG;
+		return "\"" + getName() + "\"" + Arborable.STOCK_NODES_CONFIG;
 	}
 
     @Override
@@ -78,7 +78,7 @@ public class Stock implements Arborable {
     	
     	if (getCompanies() != null && !getCompanies().isEmpty()) {
         	for (Company c : getCompanies()) {
-        		edges.append("\"" + c.getName() + "\"" + Graph.STOCKS_EDGES_CONFIG).append(",");
+        		edges.append("\"" + c.getName() + "\"" + Arborable.STOCKS_EDGES_CONFIG).append(",");
         	}
         	edges = edges.deleteCharAt(edges.length() - 1);
     	}
