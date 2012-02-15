@@ -1,30 +1,29 @@
 package com.herokuapp.neoquotes.models;
 
 /**
- * Results from a YQL query, 
- * or Nokogiri scrap through XPath.
+ * Results from a YQL query, or Nokogiri scrap through XPath.
  */
 public class YqlResult {
 
 	private String symbol;
-	
-	private String stockName;
-	
-	private String companyName;
-	
-	private String price;
 
+	private String stockName;
+
+	private String companyName;
+
+	private String price;
 
 	/**
 	 * Validate symbol data.
+	 * 
 	 * @return boolean
 	 */
 	public boolean validate() {
 		try {
-			return (!stockName.equals("")) && 
-				   (!companyName.equals("")) && 
-				   (!price.equals(""));
-		} catch(Exception e) {
+			return (!stockName.equals("")) 
+					&& (!companyName.equals(""))
+					&& (!price.equals(""));
+		} catch (Exception e) {
 			return false;
 		}
 	}
