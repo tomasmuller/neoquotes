@@ -1,14 +1,13 @@
 // NeoQuotes Application Graph Renderer
-var Renderer = function(elt){
-  
-  var dom = $(elt)
+var Renderer = function(canvasElementId){
+
+  var dom = $(canvasElementId)
   var canvas = dom.get(0)
-  var ctx = canvas.getContext("2d");
   var gfx = arbor.Graphics(canvas)
   var sys = null
 
   var appCanvas = {
-    
+
     init:function(pSystem){
       sys = pSystem
       sys.screen({size:{width:dom.width(), height:dom.height()}, padding:[40,60,40,60]})
@@ -17,14 +16,14 @@ var Renderer = function(elt){
       // set up some event handlers to allow for node-dragging
       appCanvas.initMouseHandling()
     },
-    
+
     resize:function(){
       canvas.width = $(window).width()
       canvas.height = .90* $(window).height()
       sys.screen({size:{width:canvas.width, height:canvas.height}})
       appCanvas.redraw()
     },
-    
+
     redraw:function(){
       gfx.clear()
       sys.eachEdge(function(edge, p1, p2){
@@ -45,7 +44,7 @@ var Renderer = function(elt){
         }
       })
     },
-    
+
     initMouseHandling:function(){
       // no-nonsense drag and drop (thanks springy.js)
       var dragged = null;
@@ -71,12 +70,10 @@ var Renderer = function(elt){
         dragged:function(e){
           var pos = $(canvas).offset();
           var s = arbor.Point(e.pageX-pos.left, e.pageY-pos.top)
-
           if (dragged && dragged.node !== null){
             var p = sys.fromScreen(s)
             dragged.node.p = p
           }
-
           return false
         },
         dropped:function(e){
@@ -90,7 +87,7 @@ var Renderer = function(elt){
           return false
         }
       }
-      
+
       // start listening
       $(canvas).mousedown(handler.clicked);
     },
@@ -137,7 +134,7 @@ $('#symbol_lookup_form').submit(function(e){
             sys.addNode(key, val);
           });
 
-          // set edges          
+          // set edges
           $.each(obj.edges, function(source, val){
             $.each(val, function(target, val){
               sys.addEdge(source, target, val);
