@@ -10,7 +10,7 @@ If you want more details about the development of this application, [click here]
 Getting Started Locally
 -----------------------
  * Download an install Java (JDK 1.7.0_02-b13 is fine)
- * `rvm use jruby-1.6.5`
+ * Install `jruby-1.6.5` (use [RVM](https://rvm.beginrescueend.com/) or [rbenv](https://github.com/sstephenson/rbenv))
  * Download and install Maven 3.0.3
  * Download and install Neo4J 1.6
    * `export NEO4J_REST_URL=http://localhost:7474/db/data`
@@ -23,11 +23,16 @@ Getting Started Locally
  * `mvn jetty:run`
  * open http://localhost:8080
 
-Obs: if you experience OutOfMemory errors while developing using `mvn jetty:run`,
+Obs.1: if you experience OutOfMemory errors while developing using `mvn jetty:run`,
 try increasing Maven PermSize and MaxPermSize:
 
     export MAVEN_OPTS="-XX:PermSize=256M -XX:MaxPermSize=512M"
 
+Obs.2: to set the default Ruby version mode to 1.9, you can do the following:
+
+    export JRUBY_OPTS="--1.9"
+
+or use the [.jrubyrc](https://github.com/jruby/jruby/wiki/ConfiguringJRuby) approach.
 
 Pushing to Heroku
 ------------------
