@@ -10,7 +10,7 @@ If you want more details about the development of this application, [click here]
 Getting Started Locally
 -----------------------
  * Download an install Java (JDK 1.7.0_02-b13 is fine)
- * Install `jruby-1.6.5` (use [RVM](https://rvm.beginrescueend.com/) or [rbenv](https://github.com/sstephenson/rbenv))
+ * Install JRuby 1.6.5 (use [RVM](https://rvm.beginrescueend.com/) or [rbenv](https://github.com/sstephenson/rbenv))
  * Download and install Maven 3.0.3
  * Download and install Neo4J 1.6
    * `export NEO4J_REST_URL=http://localhost:7474/db/data`
