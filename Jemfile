@@ -7,5 +7,3 @@ gem "rake-compiler", "~> 0.8.0"
 gem "hoe", "~> 2.13.0"
 
 gem "nokogiri", "~> 1.5.0"
-
-# gem "mechanize", "~> 2.1.1"
