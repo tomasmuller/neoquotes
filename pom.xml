@@ -195,6 +195,7 @@
 						</goals>
 						<configuration>
 							<assembleDirectory>target</assembleDirectory>
+							<!-- Same key/values as those in project .jrubyrc file -->
 							<extraJvmArguments>-Djruby.native.enabled=false -Djruby.cext.enabled=false -Djruby.compat.version=1.9 -Xmx256m -Xss2048k</extraJvmArguments>
 							<programs>
 								<program>
