@@ -6,23 +6,24 @@
   metadata-complete="true"
   version="2.5">
 
-
   <!-- Spring configuration -->
+
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
   </context-param>
 
   <!-- Creates the Spring Container shared by all Servlets and Filters -->
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
-  <!-- http://rubydoc.info/gems/jruby-rack/1.1.3/frames -->
+  <!-- JRuby Rack Configuration -->
 
   <context-param>
     <param-name>gem.path</param-name>
-    <param-value>vendor/bundle</param-value>
+    <param-value>./vendor/bundle</param-value>
   </context-param>
 
   <context-param>
