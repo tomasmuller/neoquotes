@@ -1,5 +1,8 @@
-# JRuby Configuration (https://github.com/jruby/jruby/wiki/ConfiguringJRuby)
+# Local JRuby Configuration (https://github.com/jruby/jruby/wiki/ConfiguringJRuby)
+# Key/Values should be the same as those in extraJvmArguments tag of appassembler-maven-plugin configuration.
 #
 native.enabled=false
 cext.enabled=false
 compat.version=1.9
+Xmx=256m
+Xss=2048k
