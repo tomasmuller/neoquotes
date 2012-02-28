@@ -7,8 +7,8 @@ server = org.eclipse.jetty.server.Server.new
 # Create and set server thread pool
 #
 threadPool = org.eclipse.jetty.util.thread.QueuedThreadPool.new
-threadPool.setMinThreads(4)
-threadPool.setMaxThreads(40)
+threadPool.setMinThreads(5)
+threadPool.setMaxThreads(10)
 server.setThreadPool(threadPool)
 
 # Create and set server connector
