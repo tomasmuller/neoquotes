@@ -1,0 +1,5 @@
+# JRuby Configuration (https://github.com/jruby/jruby/wiki/ConfiguringJRuby)
+#
+native.enabled=false
+cext.enabled=false
+compat.version=1.9

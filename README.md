@@ -28,12 +28,6 @@ try increasing Maven PermSize and MaxPermSize:
 
     export MAVEN_OPTS="-XX:PermSize=256M -XX:MaxPermSize=512M"
 
-Obs.2: to set the default Ruby version mode to 1.9, you can do the following:
-
-    export JRUBY_OPTS="--1.9"
-
-or use the [.jrubyrc](https://github.com/jruby/jruby/wiki/ConfiguringJRuby) approach.
-
 Pushing to Heroku
 ------------------
  * heroku create --stack cedar
