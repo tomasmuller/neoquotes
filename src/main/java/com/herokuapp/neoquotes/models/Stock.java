@@ -20,8 +20,8 @@ import com.herokuapp.neoquotes.repositories.StockRepository;
 @Configurable
 public class Stock implements Arborable {
 
-	@Autowired
-	private transient StockRepository stockRepository;
+    @Autowired
+    private transient StockRepository stockRepository;
 
     @GraphId
     private Long id;
@@ -36,15 +36,16 @@ public class Stock implements Arborable {
     /**
      * Empty constructor.
      */
-    public Stock() { }
+    public Stock() {
+    }
 
     /**
      * Constructor with stock name.
      * @param name
      */
     public Stock(String name) {
-		this.name = name;
-	}
+        this.name = name;
+    }
     
     /**
      * Find or create Stock with the given name.
@@ -52,71 +53,71 @@ public class Stock implements Arborable {
      * @return Stock
      */
     @Transactional
-	public Stock findOrCreate(String stockName) {
-		Stock stock = stockRepository.findByPropertyValue("name", stockName);
-		if (stock == null) {
-			stock = new Stock(stockName);
-			stock.persist();
-		}
-		return stock;
-	}
+    public Stock findOrCreate(String stockName) {
+        Stock stock = stockRepository.findByPropertyValue("name", stockName);
+        if (stock == null) {
+            stock = new Stock(stockName);
+            stock.persist();
+        }
+        return stock;
+    }
     
     @Transactional
     public ClosableIterable<Stock> findAll() {
-    	return stockRepository.findAll();
+        return stockRepository.findAll();
     }
-	
+    
     @Override
     public String nodeToArborJsJson() {
-		return "\"" + getName() + "\"" + Arborable.STOCK_NODES_CONFIG;
-	}
+        return "\"" + getName() + "\"" + Arborable.STOCK_NODES_CONFIG;
+    }
 
     @Override
     public String edgesToArborJsJson() {
-    	StringBuilder edges = new StringBuilder();
-    	edges.append("\"" + getName() + "\":{");
-    	
-    	if (getCompanies() != null && !getCompanies().isEmpty()) {
-        	for (Company c : getCompanies()) {
-        		edges.append("\"" + c.getName() + "\"" + Arborable.STOCKS_EDGES_CONFIG).append(",");
-        	}
-        	edges = edges.deleteCharAt(edges.length() - 1);
-    	}
-    	
-    	edges.append("}");
-    	return edges.toString();
+        StringBuilder edges = new StringBuilder();
+        edges.append("\"" + getName() + "\":{");
+        
+        if (getCompanies() != null && !getCompanies().isEmpty()) {
+            for (Company c : getCompanies()) {
+                edges.append("\"" + c.getName() + "\"" + Arborable.STOCKS_EDGES_CONFIG).append(",");
+            }
+            edges = edges.deleteCharAt(edges.length() - 1);
+        }
+        
+        edges.append("}");
+        return edges.toString();
     }
     
-	/** 
+    /** 
      * @param company
      */
     public void addCompany(Company company) {
-    	getCompanies().add(company);
+        getCompanies().add(company);
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
     
     public String getName() {
-		return name;
-	}
+        return name;
+    }
     
     public void setName(String name) {
-		this.name = name;
-	}
+        this.name = name;
+    }
     
     public Set<Company> getCompanies() {
-		return companies;
-	}
+        return companies;
+    }
     
     public void setCompanies(Set<Company> companies) {
-		this.companies = companies;
-	}
+        this.companies = companies;
+    }
 
-	@Override
-	public String toString() {
-		return "Stock [id=" + id + ", name=" + name + "]";
-	}
+    @Override
+    public String toString() {
+        return "Stock [id=" + id + ", name=" + name + "]";
+    }
     
 }
