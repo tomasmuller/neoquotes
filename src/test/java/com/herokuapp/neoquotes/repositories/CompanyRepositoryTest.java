@@ -12,19 +12,19 @@ import com.herokuapp.neoquotes.AbstractUnitTest;
 @Transactional
 public class CompanyRepositoryTest extends AbstractUnitTest {
 
-	@Autowired
-	private CompanyRepository companyRepository;
-	
-	/**
-	 * We can use <code>template.fetch(node.getProperty());</code>
-	 * to fetch data when needed.
-	 */
-	@Autowired 
-	private Neo4jTemplate template;
-	
-	@Test
-	public void testCompanyRepositoryNotNull() {
-		assertNotNull(companyRepository);
-	}
+    @Autowired
+    private CompanyRepository companyRepository;
+    
+    /**
+     * We can use <code>template.fetch(node.getProperty());</code>
+     * to fetch data when needed.
+     */
+    @Autowired 
+    private Neo4jTemplate template;
+    
+    @Test
+    public void testCompanyRepositoryNotNull() {
+        assertNotNull(companyRepository);
+    }
 
 }

@@ -13,6 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public abstract class AbstractUnitTest {
 
-	protected Logger logger = Logger.getLogger("neoquotes-tests");
-	
+    protected Logger logger = Logger.getLogger("neoquotes-tests");
+
 }

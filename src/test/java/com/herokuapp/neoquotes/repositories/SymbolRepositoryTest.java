@@ -12,19 +12,19 @@ import com.herokuapp.neoquotes.AbstractUnitTest;
 @Transactional
 public class SymbolRepositoryTest extends AbstractUnitTest {
 
-	@Autowired
-	private SymbolRepository symbolRepository;
+  @Autowired
+  private SymbolRepository symbolRepository;
 
-	/**
-	 * We can use <code>template.fetch(node.getProperty());</code>
-	 * to fetch data when needed.
-	 */
-	@Autowired 
-	private Neo4jTemplate template;
-	
-	@Test
-	public void testSymbolRepositoryNotNull() {
-		assertNotNull(symbolRepository);
-	}
+  /**
+   * We can use <code>template.fetch(node.getProperty());</code>
+   * to fetch data when needed.
+   */
+  @Autowired 
+  private Neo4jTemplate template;
+  
+  @Test
+  public void testSymbolRepositoryNotNull() {
+      assertNotNull(symbolRepository);
+  }
 
 }
