@@ -1,7 +1,6 @@
 #
-# JRuby-Rack looks for a "rackup" file named config.ru
-# in WEB-INF/config.ru or WEB-INF/*/config.ru.
-# http://rubydoc.info/gems/jruby-rack/1.1.3/frames
+# Trinidad looks for a "rackup" file named config.ru
+# in config/config.ru.
 #
 
 BASEDIR = File.expand_path("../../", __FILE__)
