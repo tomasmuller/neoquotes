@@ -10,6 +10,14 @@ The default directory structure of NeoQuotes application:
 
   |-- app
   |   |-- helpers
+  |   |-- java
+  |       `-- src
+  |           `-- main
+  |               `-- java
+  |               `-- resources
+  |           `-- test
+  |               `-- java
+  |               `-- resources
   |   |-- mailers
   |   |-- models
   |   `-- views
@@ -24,20 +32,8 @@ The default directory structure of NeoQuotes application:
   |   |-- img
   |   |-- javascripts
   |   `-- stylesheets
-  |-- script
-  |-- src
-  |   `-- main
-  |       `-- java
-  |       `-- resources
-  |       `-- webapp
-  |   `-- test
-  |       `-- java
-  |       `-- resources
-  |-- target
-  |-- test
-  |   `-- unit
-  `-- vendor
-      `-- bundle
+  `-- test
+      `-- unit
 
 app
   Holds all the Ruby code that's specific to this particular application.
@@ -54,9 +50,24 @@ app/voice
 app/voice/grammars
   Holds VoiceXML grammars.
 
+app/java/src/main/java
+  Holds all the Java code that's specific to this particular application.
+
+app/java/src/main/resources
+  Holds all needed resources related to Java code and frameworks of this 
+  particular application.
+
+app/java/src/test/main
+  Unit, functional and integration tests. Implemented using Java language 
+  and libraries that you know and love.
+
+app/java/src/test/resources
+  Holds all needed resouces related to testing execution.
+
 config
   Configuration files for the Sinatra environment, initializers,
-  and other dependencies.
+  and other dependencies. Also, holds web.xml and config.ru needed 
+  to bootstrap the web application.
 
 docs
   This directory is where your application documentation should be stored.
@@ -66,33 +77,6 @@ public
   and the default HTML files. This should be set as the DOCUMENT_ROOT of 
   your web server.
 
-script
-  Helper scripts for automation and generation.
-
-src/main/java
-  Holds all the Java code that's specific to this particular application.
-
-src/main/resources
-  Holds all needed resources related to Java code and frameworks of this 
-  particular application.
-
-src/main/webapp
-  Holds web.xml and config.ru needed to bootstrap the web application.
-
-src/test/main
-  Unit, functional and integration tests. Implemented using Java language 
-  and libraries that you know and love.
-
-src/test/resources
-  Holds all needed resouces related to testing execution.
-
-target
-  Holds all files generated or downloaded by Maven build tool.
-
 test
   Unit, functional and integration tests. Implemented using Ruby language 
   and libraries that you know and love.
-
-vendor
-  External libraries that the application depends on. Also includes the gems
-  defined in Jemfile under vendor/bundle/. This location is imposed by Heroku.
