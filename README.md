@@ -18,19 +18,16 @@ Getting Started Locally
    * `export NEO4J_PASSWORD=""`
    * Start Neo4j local server
  * `git clone https://github.com/tomasmuller/neoquotes.git`
- * `cd neoquotes`
- * `mvn install` (or `mvn package`)
- * `mvn jetty:run`
- * open http://localhost:8080
+ * `cd neoquotes/app/java`
+ * `mvn package`
+ * `cd ../../`
+ * `bundle exec trinidad -t -r -e development`
+ * open http://localhost:3000
 
-Obs.1: if you experience OutOfMemory errors while developing using `mvn jetty:run`,
-try increasing Maven PermSize and MaxPermSize:
-
-    export MAVEN_OPTS="-XX:PermSize=256M -XX:MaxPermSize=512M"
 
 Pushing to Heroku
 ------------------
- * heroku create --stack cedar
+ * heroku create --stack cedar --buildpack https://github.com/tomasmuller/neoquotes-heroku-buildpack.git
  * heroku config:add RACK_ENV=production --app `<app name>`
  * heroku addons:add neo4j --app `<app name>`
  * git push heroku master
@@ -39,28 +36,17 @@ Pushing to Heroku
 
 How does it work?
 -----------------
-Heroku detects the pom.xml file and selects Java as the application's
-language. A `mvn install` is run as part of the Heroku slug
-compliation. Two tasks in `pom.xml` (install-bundler and bundle-install)
-handle setting up the Ruby side of the application.
-
-The `Procfile` uses target/bin/jruby to setup the jruby environment and start
-Jetty up.
+Check the [NeoQuotes Heroku Buildpack](https://github.com/tomasmuller/neoquotes-heroku-buildpack) readme file
+for more information.
 
 
 Local development
 -----------------
-Basically use `script/bundle` in place of the normal `bundle` command.
-
-So to add Ruby dependencies, edit your `Jemfile`, then run
-`jruby -S script/bundle install`. Or any of your other "favorite"
-bundler commands.
-
 To run your rake tasks, unit tests for example, simply run:
 
-    jruby -S script/bundle exec rake test
+    jruby -S bundle exec rake test
 
-To add Java dependencies, modify the `pom.xml` file and re-run `mvn install` or `mvn package`.
+To add Java dependencies, modify the `app/java/pom.xml` file and re-run `mvn install` or `mvn package`.
 
 To run Junit tests is a matter of running `mvn test`.
 
@@ -72,3 +58,4 @@ Thanks
 -------
 Neo4j for the amazing piece of software and for sponsoring the [challenge](http://neo4j-challenge.herokuapp.com/).
 Of course, to all others great open-source technologies used in this application.
+

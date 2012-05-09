@@ -4,10 +4,10 @@
 # http://rubydoc.info/gems/jruby-rack/1.1.3/frames
 #
 
-BASEDIR = File.expand_path("../../../../../", __FILE__)
+BASEDIR = File.expand_path("../../", __FILE__)
 puts "BASEDIR is: #{BASEDIR}"
 
-ENV['BUNDLE_GEMFILE'] = "#{BASEDIR}/Jemfile"
+ENV['BUNDLE_GEMFILE'] = "#{BASEDIR}/Gemfile"
 ENV['GEM_HOME'] = "#{BASEDIR}/vendor/bundle"
 ENV['GEM_PATH'] = ENV['GEM_HOME']
 ENV['PATH'] = "#{ENV['GEM_PATH']}/bin:#{ENV['PATH']}"
@@ -46,7 +46,7 @@ set :locale, "en"
 #
 require "#{BASEDIR}/config/environments/#{settings.environment.to_s}"
 
-# Add app directories to load path.
+# Add ruby app directories to load path.
 #
 $LOAD_PATH.tap do |path|
   path << File.expand_path("#{BASEDIR}/app", __FILE__)

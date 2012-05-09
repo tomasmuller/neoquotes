@@ -12,8 +12,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jruby.version>1.6.7</jruby.version>
 		<jruby.rack.version>1.1.3</jruby.rack.version>
-		<jetty.version>7.4.5.v20110725</jetty.version>
-		<servlet.api.version>2.5</servlet.api.version>
 		<neo4j.version>1.6</neo4j.version>
 		<spring.data.neo4j.version>2.0.0.RELEASE</spring.data.neo4j.version>
 		<spring.version>3.0.6.RELEASE</spring.version>
@@ -39,23 +37,6 @@
 	</repositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet.api.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.jruby</groupId>
@@ -182,76 +163,42 @@
 				</configuration>
 			</plugin>
 
-			<!-- Appassembler configured to use JRuby as main class -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>appassembler-maven-plugin</artifactId>
-				<version>1.1.1</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>assemble</goal>
-						</goals>
-						<configuration>
-							<assembleDirectory>target</assembleDirectory>
-							<!-- Same key/values as those in project .jrubyrc file -->
-							<extraJvmArguments>-Djruby.native.enabled=false -Djruby.cext.enabled=false -Djruby.compat.version=1.9 -Xmx256m -Xss2048k</extraJvmArguments>
-							<programs>
-								<program>
-									<mainClass>org.jruby.Main</mainClass>
-									<name>jruby</name>
-								</program>
-							</programs>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <!-- Copy app dependencies -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
-			<!-- Install and use bundler to process the Jemfile -->
-			<plugin>
-				<groupId>org.jruby.plugins</groupId>
-				<artifactId>jruby-rake-plugin</artifactId>
-				<version>${jruby.version}</version>
-				<executions>
-					<execution>
-						<id>install-bundler</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>jruby</goal>
-						</goals>
-						<configuration>
-							<args>-S gem install bundler --no-ri --no-rdoc --install-dir vendor/bundle</args>
-						</configuration>
-					</execution>
-					<execution>
-						<id>bundle-install</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>jruby</goal>
-						</goals>
-						<configuration>
-							<args>script/bundle install --without development:test</args>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- jetty:run to start development server -->
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
-				<configuration>
-					<scanTargets>
-						<scanTarget>app</scanTarget>
-					</scanTargets>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/</contextPath>
-					</webApp>
-				</configuration>
-			</plugin>
+      <!-- Neoquotes app jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
 		</plugins>
 
 	</build>

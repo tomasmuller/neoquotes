@@ -1,0 +1,9 @@
+
+  # Trinidad web_app configuration:
+
+  libs_dir: app/java/target
+  default_web_xml: config/web.xml
+  context_path: /
+  rackup: config/config.ru
+  public: public
+

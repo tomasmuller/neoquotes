@@ -1,1 +1,1 @@
-web: sh target/bin/jruby -S config/jetty.rb
+web: bin/trinidad -t -r -p $PORT -e $RACK_ENV
