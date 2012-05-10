@@ -28,8 +28,6 @@ Getting Started Locally
 Pushing to Heroku
 ------------------
  * heroku create --stack cedar --buildpack https://github.com/tomasmuller/neoquotes-heroku-buildpack.git
- * heroku config:add RACK_ENV=production --app `<app name>`
- * heroku addons:add neo4j --app `<app name>`
  * git push heroku master
  * heroku open --app `<app name>`
 
@@ -58,4 +56,3 @@ Thanks
 -------
 Neo4j for the amazing piece of software and for sponsoring the [challenge](http://neo4j-challenge.herokuapp.com/).
 Of course, to all others great open-source technologies used in this application.
-
